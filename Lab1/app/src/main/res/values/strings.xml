@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Converter</string>
+    <string-array name="Categories">
+        <item>Length</item>
+        <item>Weight</item>
+        <item>Time</item>
+    </string-array>
+    <string-array name="Length">
+        <item>cm</item>
+        <item>m</item>
+        <item>km</item>
+    </string-array>
+    <string-array name="Weight">
+        <item>g</item>
+        <item>kg</item>
+        <item>t</item>
+    </string-array>
+    <string-array name="Time">
+        <item>s</item>
+        <item>min</item>
+        <item>h</item>
+    </string-array>
 </resources>
