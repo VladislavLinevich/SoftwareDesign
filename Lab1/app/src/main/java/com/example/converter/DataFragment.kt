@@ -1,6 +1,8 @@
 package com.example.converter
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,6 +94,155 @@ class DataFragment : Fragment() {
             setEditText(buttonIndex, edittext2)
         }
     }
+
+    private fun Convert(InputNumber: Editable, ConvertNumber: Editable, CategorySpinner: Spinner,  InputSpinner: Spinner, ConvertSpinner: Spinner){
+        val categories = resources.getStringArray(R.array.Categories)
+        var names: Array<String>
+        var num = InputNumber.toString().toDoubleOrNull()
+
+        if (num == null){
+            ConvertNumber.clear()
+        }
+        else {
+            if (CategorySpinner.selectedItem.toString() == categories[0]) {
+                names = resources.getStringArray(R.array.Length)
+
+                // From cm to others
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 100).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 100000).toString())
+                }
+
+                // From m to others
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 100).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 1000).toString())
+                }
+
+                // From km to others
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 100000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 1000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+            }
+            if (CategorySpinner.selectedItem.toString() == categories[1]) {
+                names = resources.getStringArray(R.array.Weight)
+
+                // From g to others
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 1000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 1000000).toString())
+                }
+
+                // From kg to others
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 1000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 1000).toString())
+                }
+
+                // From t to others
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 1000000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 1000).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+            }
+            if (CategorySpinner.selectedItem.toString() == categories[2]) {
+                names = resources.getStringArray(R.array.Time)
+
+                // From s to others
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 60).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 3600).toString())
+                }
+
+                // From min to others
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 60).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num / 60).toString())
+                }
+
+                // From h to others
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 3600).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append((num * 60).toString())
+                }
+                if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
+                    ConvertNumber.clear()
+                    ConvertNumber.append(InputNumber.toString())
+                }
+            }
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -128,21 +279,99 @@ class DataFragment : Fragment() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-                val choose = resources.getStringArray(R.array.Categories)
                 var names = resources.getStringArray(R.array.Length)
-                if (choose[spinner.selectedItemPosition] == choose[0]){
+                if (spinner.selectedItem.toString() == categories[0]){
                     names = resources.getStringArray(R.array.Length)
+                    if(edittext.text.toString() != "") {
+                        Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                    }
                 }
-                if (choose[spinner.selectedItemPosition] == choose[1]){
+                if (spinner.selectedItem.toString() == categories[1]){
                     names = resources.getStringArray(R.array.Weight)
+                    if(edittext.text.toString() != "") {
+                        Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                    }
                 }
-                if (choose[spinner.selectedItemPosition] == choose[2]){
+                if (spinner.selectedItem.toString() == categories[2]){
                     names = resources.getStringArray(R.array.Time)
+                    if(edittext.text.toString() != "") {
+                        Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                    }
                 }
                 spinner2.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, names)
                 spinner3.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, names)
             }
         }
+
+        spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, id: Long) {
+                if(edittext.isFocused && edittext.text.toString() != "") {
+                    Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                }
+                if(edittext2.isFocused && edittext.text.toString() != ""){
+                    Convert(edittext2.text, edittext.text, spinner, spinner3, spinner2)
+                }
+            }
+        }
+
+        spinner3?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, p1: View?, position: Int, id: Long) {
+                if(edittext.isFocused && edittext.text.toString() != "") {
+                    Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                }
+                if(edittext2.isFocused && edittext.text.toString() != ""){
+                    Convert(edittext2.text, edittext.text, spinner, spinner3, spinner2)
+                }
+            }
+        }
+
+        edittext.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if (s.toString() != "" && edittext.isFocused) {
+                    Convert(edittext.text, edittext2.text, spinner, spinner2, spinner3)
+                }
+                if (s.toString() == "" && edittext.isFocused) {
+                    edittext2.text.clear()
+                }
+
+            }
+        })
+
+        edittext2.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if (s.toString() != "" && edittext2.isFocused) {
+                    Convert(edittext2.text, edittext.text, spinner, spinner3, spinner2)
+                }
+                if(s.toString() == "" && edittext2.isFocused) {
+                    edittext.text.clear()
+                }
+
+            }
+        })
     }
 
     companion object {
