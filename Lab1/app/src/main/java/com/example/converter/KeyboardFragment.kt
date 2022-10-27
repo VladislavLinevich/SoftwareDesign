@@ -42,6 +42,11 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
             R.id.button10 -> index = 10
             R.id.button11 -> index = 11
             R.id.button12 -> index = 12
+            R.id.button13 -> index = 13
+            R.id.button14 -> index = 14
+            R.id.button15 -> index = 15
+            R.id.button -> index = 16
+
         }
         return index
     }
@@ -84,6 +89,10 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         val button10: Button = view.findViewById(R.id.button10)
         val button11: Button = view.findViewById(R.id.button11)
         val button12: Button = view.findViewById(R.id.button12)
+        val button13: Button = view.findViewById(R.id.button13)
+        val button14: Button = view.findViewById(R.id.button14)
+        val button15: Button = view.findViewById(R.id.button15)
+        val button16: Button = view.findViewById(R.id.button)
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
@@ -96,6 +105,10 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         button10.setOnClickListener(this)
         button11.setOnClickListener(this)
         button12.setOnClickListener(this)
+        button13.setOnClickListener(this)
+        button14.setOnClickListener(this)
+        button15.setOnClickListener(this)
+        button16.setOnClickListener(this)
     }
 
     companion object {

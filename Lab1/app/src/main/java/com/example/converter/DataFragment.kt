@@ -1,16 +1,17 @@
 package com.example.converter
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import androidx.fragment.app.Fragment
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +29,9 @@ class DataFragment : Fragment() {
     private var param2: String? = null
     private lateinit var edittext: EditText
     private lateinit var edittext2: EditText
+    private lateinit var spinner: Spinner
+    private lateinit var spinner2: Spinner
+    private lateinit var spinner3: Spinner
 
     private fun setEditText(buttonIndex: Int, edit: EditText){
         val start = edit.selectionStart.coerceAtLeast(0)
@@ -63,21 +67,71 @@ class DataFragment : Fragment() {
             10 -> edit.text.replace(
                 start.coerceAtMost(end), start.coerceAtLeast(end),
                 "0", 0, 1)
-            11 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                ".", 0, 1)
+            11 -> {
+                if (edit.text.toString() == ""){
+                    edit.text.replace(
+                        start.coerceAtMost(end), start.coerceAtLeast(end),
+                        "0.", 0, 2
+                    )
+                }
+                else{
+                    edit.text.replace(
+                        start.coerceAtMost(end), start.coerceAtLeast(end),
+                        ".", 0, 1
+                    )
+                    if (edit.text.isNotEmpty() && edit.text.toString()[0] == '.'){
+                        edit.text.insert(0, "0")
+                    }
+                    if (edit.text.toString().count { it == '.' } == 2){
+                        if (edit.selectionEnd - edit.selectionStart > 0) {
+                            edit.text.delete(edit.selectionStart, edit.selectionEnd)
+                        }
+                        else {
+                            if (edit.selectionStart > 0)
+                            {
+                                edit.text.delete(edit.selectionStart - 1, edit.selectionStart)
+                            }
+                        }
+                    }
+                }
+            }
             12 -> {
                 if (edit.selectionEnd - edit.selectionStart > 0) {
                     edit.text.delete(edit.selectionStart, edit.selectionEnd)
+                    if (edit.text.isNotEmpty() && edit.text.toString()[0] == '.'){
+                        edit.text.delete(0, 1)
+                    }
                 }
                 else {
                     if (edit.selectionStart > 0)
                     {
                         edit.text.delete(edit.selectionStart - 1, edit.selectionStart)
+                        if (edit.text.isNotEmpty() && edit.text.toString()[0] == '.'){
+                            edit.text.delete(0, 1)
+                        }
                     }
                 }
 
             }
+            13 -> {
+                val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("label",edittext.text)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(activity?.applicationContext, "First editbox copied successfully", Toast.LENGTH_SHORT).show()
+            }
+            14 -> {
+                val pos: Int = spinner2.selectedItemPosition
+                spinner2.setSelection(spinner3.selectedItemPosition)
+                spinner3.setSelection(pos)
+                edittext.text = edittext2.text
+            }
+            15 -> {
+                val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("label",edittext2.text)
+                clipboard.setPrimaryClip(clip)
+                Toast.makeText(activity?.applicationContext, "Second editbox copied successfully", Toast.LENGTH_SHORT).show()
+            }
+            16 -> edit.text.clear()
             else -> {
             }
         }
@@ -100,6 +154,9 @@ class DataFragment : Fragment() {
         var names: Array<String>
         var num = InputNumber.toString().toDoubleOrNull()
 
+        if (CategorySpinner.selectedItem == null || InputSpinner.selectedItem == null){
+            return
+        }
         if (num == null){
             ConvertNumber.clear()
         }
@@ -263,9 +320,9 @@ class DataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val categories = resources.getStringArray(R.array.Categories)
-        val spinner: Spinner = view.findViewById(R.id.spinner4)
-        val spinner2: Spinner = view.findViewById(R.id.spinner)
-        val spinner3: Spinner = view.findViewById(R.id.spinner3)
+        spinner = view.findViewById(R.id.spinner4)
+        spinner2 = view.findViewById(R.id.spinner)
+        spinner3 = view.findViewById(R.id.spinner3)
         spinner.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, categories)
 
         edittext = view.findViewById(R.id.editTextNumberDecimal)
