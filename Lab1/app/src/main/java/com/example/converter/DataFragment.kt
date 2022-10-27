@@ -79,19 +79,11 @@ class DataFragment : Fragment() {
                         start.coerceAtMost(end), start.coerceAtLeast(end),
                         ".", 0, 1
                     )
+                    if (edit.text.toString().count { it == '.' } == 2){
+                        edit.text.delete(edit.selectionStart - 1, edit.selectionStart)
+                    }
                     if (edit.text.isNotEmpty() && edit.text.toString()[0] == '.'){
                         edit.text.insert(0, "0")
-                    }
-                    if (edit.text.toString().count { it == '.' } == 2){
-                        if (edit.selectionEnd - edit.selectionStart > 0) {
-                            edit.text.delete(edit.selectionStart, edit.selectionEnd)
-                        }
-                        else {
-                            if (edit.selectionStart > 0)
-                            {
-                                edit.text.delete(edit.selectionStart - 1, edit.selectionStart)
-                            }
-                        }
                     }
                 }
             }
@@ -324,7 +316,6 @@ class DataFragment : Fragment() {
         spinner2 = view.findViewById(R.id.spinner)
         spinner3 = view.findViewById(R.id.spinner3)
         spinner.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, categories)
-
         edittext = view.findViewById(R.id.editTextNumberDecimal)
         edittext2 = view.findViewById(R.id.editTextNumberDecimal2)
         edittext.showSoftInputOnFocus = false
@@ -357,6 +348,10 @@ class DataFragment : Fragment() {
                 }
                 spinner2.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, names)
                 spinner3.adapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, names)
+                if (savedInstanceState != null) {
+                    spinner2.setSelection(savedInstanceState.getInt("savedFirstSpinner"))
+                    spinner3.setSelection(savedInstanceState.getInt("savedSecondSpinner"))
+                }
             }
         }
 
@@ -409,7 +404,6 @@ class DataFragment : Fragment() {
 
             }
         })
-
         edittext2.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
@@ -429,6 +423,20 @@ class DataFragment : Fragment() {
 
             }
         })
+
+        if (savedInstanceState != null){
+            edittext.text.append("1")
+        }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+
+        super.onSaveInstanceState(outState)
+
+        outState.putInt("savedFirstSpinner", spinner2.selectedItemPosition)
+        outState.putInt("savedSecondSpinner", spinner3.selectedItemPosition)
+
     }
 
     companion object {
