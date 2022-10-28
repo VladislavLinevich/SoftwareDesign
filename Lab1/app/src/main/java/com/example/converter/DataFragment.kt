@@ -113,9 +113,16 @@ class DataFragment : Fragment() {
             }
             14 -> {
                 val pos: Int = spinner2.selectedItemPosition
+
                 spinner2.setSelection(spinner3.selectedItemPosition)
                 spinner3.setSelection(pos)
-                edittext.text = edittext2.text
+                if(edittext.isFocused) {
+                    edittext.text = edittext2.text
+                }
+                else {
+                    edittext2.text = edittext.text
+                }
+
             }
             15 -> {
                 val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
