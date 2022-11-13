@@ -1,4 +1,4 @@
-package com.example.converter
+package com.example.calculator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,18 +14,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [KeyboardFragment.newInstance] factory method to
+ * Use the [ScientificFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-
-interface OnSelectedButtonListener {
-    fun onButtonSelected(buttonIndex: Int)
-}
-
-class KeyboardFragment : Fragment(), View.OnClickListener {
+class ScientificFragment : Fragment(), View.OnClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
 
     private fun translateIdToIndex(id: Int): Int {
         var index = -1
@@ -45,8 +41,23 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
             R.id.button13 -> index = 13
             R.id.button14 -> index = 14
             R.id.button15 -> index = 15
-            R.id.button -> index = 16
+            R.id.button16 -> index = 16
             R.id.button17 -> index = 17
+            R.id.button18 -> index = 18
+            R.id.button19 -> index = 19
+            R.id.button20 -> index = 20
+            R.id.button21 -> index = 21
+            R.id.button22 -> index = 22
+            R.id.button23 -> index = 23
+            R.id.button24 -> index = 24
+            R.id.button25 -> index = 25
+            R.id.button26 -> index = 26
+            R.id.button27 -> index = 27
+            R.id.button28 -> index = 28
+            R.id.button29 -> index = 29
+            R.id.button30 -> index = 30
+            R.id.button31 -> index = 31
+            R.id.button32 -> index = 32
 
         }
         return index
@@ -72,7 +83,7 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_keyboard, container, false)
+        return inflater.inflate(R.layout.fragment_scientific, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -93,8 +104,23 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         val button13: Button = view.findViewById(R.id.button13)
         val button14: Button = view.findViewById(R.id.button14)
         val button15: Button = view.findViewById(R.id.button15)
-        val button16: Button = view.findViewById(R.id.button)
+        val button16: Button = view.findViewById(R.id.button16)
         val button17: Button = view.findViewById(R.id.button17)
+        val button18: Button = view.findViewById(R.id.button18)
+        val button19: Button = view.findViewById(R.id.button19)
+        val button20: Button = view.findViewById(R.id.button20)
+        val button21: Button = view.findViewById(R.id.button21)
+        val button22: Button = view.findViewById(R.id.button22)
+        val button23: Button = view.findViewById(R.id.button23)
+        val button24: Button = view.findViewById(R.id.button24)
+        val button25: Button = view.findViewById(R.id.button25)
+        val button26: Button = view.findViewById(R.id.button26)
+        val button27: Button = view.findViewById(R.id.button27)
+        val button28: Button = view.findViewById(R.id.button28)
+        val button29: Button = view.findViewById(R.id.button29)
+        val button30: Button = view.findViewById(R.id.button30)
+        val button31: Button = view.findViewById(R.id.button31)
+        val button32: Button = view.findViewById(R.id.button32)
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
@@ -112,6 +138,21 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         button15.setOnClickListener(this)
         button16.setOnClickListener(this)
         button17.setOnClickListener(this)
+        button18.setOnClickListener(this)
+        button19.setOnClickListener(this)
+        button20.setOnClickListener(this)
+        button21.setOnClickListener(this)
+        button22.setOnClickListener(this)
+        button23.setOnClickListener(this)
+        button24.setOnClickListener(this)
+        button25.setOnClickListener(this)
+        button26.setOnClickListener(this)
+        button27.setOnClickListener(this)
+        button28.setOnClickListener(this)
+        button29.setOnClickListener(this)
+        button30.setOnClickListener(this)
+        button31.setOnClickListener(this)
+        button32.setOnClickListener(this)
     }
 
     companion object {
@@ -121,12 +162,12 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment KeyboardFragment.
+         * @return A new instance of fragment ScientificFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            KeyboardFragment().apply {
+            ScientificFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

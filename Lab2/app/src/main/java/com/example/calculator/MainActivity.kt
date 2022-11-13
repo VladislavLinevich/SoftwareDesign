@@ -1,10 +1,9 @@
-package com.example.converter
+package com.example.calculator
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
 class MainActivity : AppCompatActivity(), OnSelectedButtonListener {
-
 
     override fun onButtonSelected(buttonIndex: Int) {
         val fragmentManager = supportFragmentManager
@@ -16,8 +15,6 @@ class MainActivity : AppCompatActivity(), OnSelectedButtonListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
     }
-
 }

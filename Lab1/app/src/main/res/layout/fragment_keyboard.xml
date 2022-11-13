@@ -182,6 +182,14 @@
                 app:iconGravity="textStart"
                 app:iconPadding="0dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="Paste" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

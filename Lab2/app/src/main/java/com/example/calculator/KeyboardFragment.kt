@@ -1,4 +1,4 @@
-package com.example.converter
+package com.example.calculator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,8 +45,11 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
             R.id.button13 -> index = 13
             R.id.button14 -> index = 14
             R.id.button15 -> index = 15
-            R.id.button -> index = 16
+            R.id.button16 -> index = 16
             R.id.button17 -> index = 17
+            R.id.button18 -> index = 18
+            R.id.button19 -> index = 19
+            R.id.button20 -> index = 20
 
         }
         return index
@@ -93,8 +96,11 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         val button13: Button = view.findViewById(R.id.button13)
         val button14: Button = view.findViewById(R.id.button14)
         val button15: Button = view.findViewById(R.id.button15)
-        val button16: Button = view.findViewById(R.id.button)
+        val button16: Button = view.findViewById(R.id.button16)
         val button17: Button = view.findViewById(R.id.button17)
+        val button18: Button = view.findViewById(R.id.button18)
+        val button19: Button = view.findViewById(R.id.button19)
+        val button20: Button = view.findViewById(R.id.button20)
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
@@ -112,6 +118,9 @@ class KeyboardFragment : Fragment(), View.OnClickListener {
         button15.setOnClickListener(this)
         button16.setOnClickListener(this)
         button17.setOnClickListener(this)
+        button18.setOnClickListener(this)
+        button19.setOnClickListener(this)
+        button20.setOnClickListener(this)
     }
 
     companion object {

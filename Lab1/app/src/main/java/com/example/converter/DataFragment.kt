@@ -6,9 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 
@@ -37,37 +35,106 @@ class DataFragment : Fragment() {
         val start = edit.selectionStart.coerceAtLeast(0)
         val end = edit.selectionEnd.coerceAtLeast(0)
         when (buttonIndex) {
-            1 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "1", 0, 1)
-            2 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "2", 0, 1)
-            3 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "3", 0, 1)
-            4 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "4", 0, 1)
-            5 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "5", 0, 1)
-            6 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "6", 0, 1)
-            7 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "7", 0, 1)
-            8 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "8", 0, 1)
-            9 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "9", 0, 1)
-            10 -> edit.text.replace(
-                start.coerceAtMost(end), start.coerceAtLeast(end),
-                "0", 0, 1)
+            1 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "1", 0, 1
+                )
+            }
+            2 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "2", 0, 1
+                )
+
+            }
+            3 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "3", 0, 1
+                )
+
+            }
+            4 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "4", 0, 1
+                )
+            }
+            5 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "5", 0, 1
+                )
+            }
+            6 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "6", 0, 1
+                )
+            }
+            7 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "7", 0, 1
+                )
+            }
+            8 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "8", 0, 1
+                )
+            }
+            9 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "9", 0, 1
+                )
+            }
+            10 -> {
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
+                edit.text.replace(
+                    start.coerceAtMost(end), start.coerceAtLeast(end),
+                    "0", 0, 1
+                )
+            }
             11 -> {
+                if(edit.text.length == 15){
+                    Toast.makeText(activity?.applicationContext, "Dot can't be the last symbol", Toast.LENGTH_SHORT).show()
+                    return
+                }
+                if(edit.text.length == 16){
+                    Toast.makeText(activity?.applicationContext, "Max 16 symbols", Toast.LENGTH_SHORT).show()
+                }
                 if (edit.text.toString() == ""){
                     edit.text.replace(
                         start.coerceAtMost(end), start.coerceAtLeast(end),
@@ -131,8 +198,35 @@ class DataFragment : Fragment() {
                 Toast.makeText(activity?.applicationContext, "Second editbox copied successfully", Toast.LENGTH_SHORT).show()
             }
             16 -> edit.text.clear()
+            17 -> {
+                val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val data = clipboard.primaryClip?.getItemAt(0)
+                val text = edit.text.toString()
+
+                if (data != null) {
+                    if (data.text.toString().toDoubleOrNull() == null) {
+                        edit.setText(text)
+                        Toast.makeText(activity?.applicationContext, "Invalid format", Toast.LENGTH_SHORT).show()
+                    }
+                    if (data.text.toString().toDoubleOrNull() != null) {
+
+                        edit.text.replace(
+                            start.coerceAtMost(end), start.coerceAtLeast(end),
+                            data.text, 0, data.text.length)
+                        if (edit.text.toString().count { it == '.' } == 2){
+                            edit.setText(text)
+                            Toast.makeText(activity?.applicationContext, "Invalid format", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+
+                //Toast.makeText(activity?.applicationContext, "Second editbox copied successfully", Toast.LENGTH_SHORT).show()
+            }
             else -> {
             }
+
+
         }
     }
 
@@ -151,7 +245,8 @@ class DataFragment : Fragment() {
     private fun Convert(InputNumber: Editable, ConvertNumber: Editable, CategorySpinner: Spinner,  InputSpinner: Spinner, ConvertSpinner: Spinner){
         val categories = resources.getStringArray(R.array.Categories)
         var names: Array<String>
-        var num = InputNumber.toString().toDoubleOrNull()
+        val num = InputNumber.toString().toDoubleOrNull()
+        var Number: String = ""
 
         if (CategorySpinner.selectedItem == null || InputSpinner.selectedItem == null){
             return
@@ -165,89 +260,73 @@ class DataFragment : Fragment() {
 
                 // From cm to others
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
+                    //ConvertNumber.append(InputNumber.toString())
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 100).toString())
+                    Number = (num / 100).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 100000).toString())
+                    Number = (num / 100000).toBigDecimal().toPlainString()
                 }
 
                 // From m to others
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 100).toString())
+                    Number = (num * 100).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 1000).toString())
+                    Number = (num / 1000).toBigDecimal().toPlainString()
                 }
 
                 // From km to others
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 100000).toString())
+                    Number = (num * 100000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 1000).toString())
+                    Number = (num * 1000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
+
             }
             if (CategorySpinner.selectedItem.toString() == categories[1]) {
                 names = resources.getStringArray(R.array.Weight)
 
                 // From g to others
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 1000).toString())
+                    Number = (num / 1000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 1000000).toString())
+                    Number = (num / 1000000).toBigDecimal().toPlainString()
                 }
 
                 // From kg to others
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 1000).toString())
+                    Number = (num * 1000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 1000).toString())
+                    Number = (num / 1000).toBigDecimal().toPlainString()
                 }
 
                 // From t to others
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 1000000).toString())
+                    Number = (num * 1000000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 1000).toString())
+                    Number = (num * 1000).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
             }
             if (CategorySpinner.selectedItem.toString() == categories[2]) {
@@ -255,45 +334,46 @@ class DataFragment : Fragment() {
 
                 // From s to others
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 60).toString())
+                    Number = (num / 60).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[0] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 3600).toString())
+                    Number = (num / 3600).toBigDecimal().toPlainString()
                 }
 
                 // From min to others
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 60).toString())
+                    Number = (num * 60).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[1] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num / 60).toString())
+                    Number = (num / 60).toBigDecimal().toPlainString()
                 }
 
                 // From h to others
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[0]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 3600).toString())
+                    Number = (num * 3600).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[1]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append((num * 60).toString())
+                    Number = (num * 60).toBigDecimal().toPlainString()
                 }
                 if (InputSpinner.selectedItem.toString() == names[2] && ConvertSpinner.selectedItem.toString() == names[2]) {
-                    ConvertNumber.clear()
-                    ConvertNumber.append(InputNumber.toString())
+                    Number = InputNumber.toString()
                 }
+            }
+            if (Number.length <= 16 || Number.contains('.'))
+            {
+                ConvertNumber.clear()
+                ConvertNumber.append(Number)
+            }
+            if (Number.length > 16 && !Number.contains('.'))
+            {
+                ConvertNumber.clear()
+                Toast.makeText(activity?.applicationContext, "Converted value too long", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -327,6 +407,44 @@ class DataFragment : Fragment() {
         edittext2 = view.findViewById(R.id.editTextNumberDecimal2)
         edittext.showSoftInputOnFocus = false
         edittext2.showSoftInputOnFocus = false
+
+        edittext.customSelectionActionModeCallback = object : ActionMode.Callback {
+            override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+                menu.clear()
+                return false
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode) {
+            }
+
+            override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+                return true
+            }
+
+            override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+                return false
+            }
+
+        }
+
+        edittext2.customSelectionActionModeCallback = object : ActionMode.Callback {
+            override fun onPrepareActionMode(mode: ActionMode, menu: Menu): Boolean {
+                menu.clear()
+                return false
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode) {
+            }
+
+            override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
+                return true
+            }
+
+            override fun onActionItemClicked(mode: ActionMode, item: MenuItem): Boolean {
+                return false
+            }
+
+        }
 
         spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
